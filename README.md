@@ -25,8 +25,18 @@
 - an advanced editor
 - search todo notes by labels
 
-<img src="./assets/screenshots/editor.png" style="align: center;" />
-<img src="./assets/screenshots/view-wide.png" style="align: center;" />
+## screenshots
+
+**editor:**
+
+<img src="./assets/screenshots/editor.png" style="align: center;" /><br />
+
+**wide screens:**
+
+<img src="./assets/screenshots/view-wide.png" style="align: center;" /><br />
+
+**small screens:**
+
 <img src="./assets/screenshots/view-small.png" style="align: center;" />
 
 ## getting started
