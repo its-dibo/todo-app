@@ -5,6 +5,7 @@
 - NodeJs
 - Angular v17
 - NestJs
+- Fastify (for the API server) and Express for SSR
 - TypeORM
 - MongoDb / postgreSQL (both are supported)
 - Swagger (for API documenting)
@@ -12,9 +13,12 @@
 - PWA (progressive web app)
 - material design
 - CI/CD with github actions
+- Server-side rendering
 
 ## features
 
+- front-end and backend
+- Authentication
 - SEO friendly (meta tags are updated for each route)
 
 ## getting started
