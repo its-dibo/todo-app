@@ -1,0 +1,28 @@
+{
+  "name": "@engineers/rxjs",
+  "version": "1.0.0",
+  "type": "module",
+  "private": false,
+  "description": "rxjs utils",
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  },
+  "keywords": [
+    "rxjs"
+  ],
+  "scripts": {
+    "build": "node -r tsconfig-paths/register --experimental-specifier-resolution=node --experimental-import-meta-resolve --no-warnings --loader ts-node/esm ./esbuild.config.ts",
+    "postbuild": "shx cp package.json dist && json -I -f dist/package.json -e \"this.files=undefined;this.devDependencies=undefined;this.scripts=undefined;this.imports={'#*':'./*'};\"",
+    "prepublishOnly": "npm run build",
+    "prerelease": "shx mkdir -p dist && shx cp package.json dist",
+    "prerelease:local": "npm run prerelease",
+    "release": "semantic-release",
+    "release:local": "semantic-release --no-ci",
+    "postrelease": "shx rm -fr dist && shx rm -fr tarball!!",
+    "postrelease:local": "npm run postrelease",
+    "_publish": "cd dist && npm publish --access=public",
+    "pre_publish": "npm run prepublishOnly",
+    "_pack": "npm run prepublishOnly && npm pack --prefix=dist ./dist",
+    "postversion": "shx cp package.json .."
+  }
+}

@@ -14,12 +14,20 @@
 - material design
 - CI/CD with github actions
 - Server-side rendering
+- Quill
 
 ## features
 
 - front-end and backend
 - Authentication
 - SEO friendly (meta tags are updated for each route)
+- responsive design and mobile-first UX
+- an advanced editor
+- search todo notes by labels
+
+<img src="./assets/screenshots/editor.png" style="align: center;" />
+<img src="./assets/screenshots/view-wide.png" style="align: center;" />
+<img src="./assets/screenshots/view-small.png" style="align: center;" />
 
 ## getting started
 
