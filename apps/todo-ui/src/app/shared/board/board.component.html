@@ -1,0 +1,6 @@
+<div
+  *ngIf="message?.text"
+  class="mt-3"
+  [ngClass]="'alert-' + message?.status || ''"
+  [innerHTML]="message?.text"
+></div>

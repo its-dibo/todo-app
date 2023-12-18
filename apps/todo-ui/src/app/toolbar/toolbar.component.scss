@@ -1,0 +1,54 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+
+  position: fixed;
+  z-index: 100;
+
+  * {
+    // todo: if link or button or has attribute (click)
+    cursor: pointer;
+  }
+
+  mat-icon {
+    vertical-align: middle;
+  }
+
+  #site-logo {
+    &:hover {
+      color: coral;
+    }
+
+    mat-icon {
+      margin-right: 10px;
+    }
+
+    span {
+      font-family: Vibes;
+      font-size: xx-large;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  @media (max-width: 550px) {
+    font-size: smaller;
+  }
+
+  @media (max-width: 450px) {
+    #site-logo span {
+      display: none;
+    }
+  }
+  @media (max-width: 350px) {
+    #site-logo {
+      display: none;
+    }
+  }
+}
+
+mat-toolbar a,
+footer a {
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}

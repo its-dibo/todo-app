@@ -1,0 +1,5 @@
+<app-board [message]="message"></app-board>
+
+<ngx-content-card [data]="data" type="list" *ngIf="data"> </ngx-content-card>
+
+<mat-spinner *ngIf="loading" strokeWidth="10" diameter="100"></mat-spinner>

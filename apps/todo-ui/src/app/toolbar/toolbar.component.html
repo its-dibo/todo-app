@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <a routerLink="/" id="site-logo">
+    <mat-icon>format_list_bulleted</mat-icon>
+    <span matTooltip="{{ meta.description }}">{{ meta.name }}</span>
+  </a>
+
+  <div>
+    <span><mat-icon>add</mat-icon><a routerLink="/todos/editor">Add</a> </span>
+  </div>
+
+  <div>
+    @if (loginStatus === "loggedOut") {
+      <button mat-raised-button color="accent" (click)="login()">Login</button>
+    } @else if (loginStatus === "loggedIn") {
+      <div id="user-info">
+        <a *ngIf="user?.name && user?.id" routerLink="/users/{{ user?.id }}">{{
+          user?.name
+        }}</a>
+        <button mat-raised-button color="accent" (click)="logout()">
+          LogOut
+        </button>
+      </div>
+    }
+  </div>
+</mat-toolbar>

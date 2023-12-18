@@ -1,0 +1,12 @@
+#container {
+  padding: 20px;
+}
+
+:host {
+  border-radius: 20px;
+}
+
+::ng-deep app-form #actions {
+  display: flex;
+  justify-content: space-around;
+}

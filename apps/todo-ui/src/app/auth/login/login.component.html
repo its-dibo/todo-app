@@ -1,0 +1,21 @@
+<div id="container">
+  <app-board [message]="message"></app-board>
+
+  @if (fields) {
+    <h1 [innerHTML]="data?.title || 'Login to your account'"></h1>
+
+    <!-- todo: add forget password link and remember checkbox -->
+    <app-form
+      [fields]="fields"
+      [disabled]="loading"
+      (submit)="onSubmit($event)"
+      submitButton="Login"
+    >
+      <ng-container actions>
+        <button mat-raised-button (click)="register()">Register</button>
+      </ng-container>
+    </app-form>
+  }
+
+  <mat-spinner *ngIf="loading" strokeWidth="10" diameter="100"></mat-spinner>
+</div>

@@ -1,0 +1,14 @@
+.action {
+  cursor: pointer;
+}
+
+::ng-deep {
+  .ql-container {
+    font-family: inherit;
+  }
+
+  .ql-editor {
+    font-size: x-large;
+    line-height: 1.8;
+  }
+}

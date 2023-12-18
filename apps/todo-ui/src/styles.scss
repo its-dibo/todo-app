@@ -1,0 +1,103 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Baloo Bhaijaan 2", "system-ui", Roboto, sans-serif;
+  font-size: large;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+img {
+  vertical-align: middle;
+}
+
+// the page container, i.e: below the header(toolbar) and above the footer
+.page {
+  padding: 10px;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
+
+a {
+  font-weight: 700;
+}
+
+/* bootstrap-like alerts */
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  text-align: center;
+
+  .dismiss {
+  }
+}
+
+.alert-ok {
+  @extend .alert;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #155724;
+}
+
+.alert-error {
+  @extend .alert;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #721c24;
+}
+
+.alert-warning {
+  @extend .alert;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #8a6d3b;
+}
+
+formly-field {
+  display: block;
+  margin-bottom: 10px;
+
+  mat-hint {
+    color: gray;
+    font-style: italic;
+  }
+}
+
+.masonry {
+  column-count: 1;
+  column-gap: 1em;
+
+  .masonry-item,
+  ngx-content-card {
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    column-count: 2;
+  }
+
+  @media (min-width: 1500px) {
+    column-count: 3;
+  }
+}

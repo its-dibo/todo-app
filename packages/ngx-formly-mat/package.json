@@ -1,0 +1,28 @@
+{
+  "name": "@engineers/ngx-formly-mat",
+  "version": "0.0.1",
+  "type": "module",
+  "private": false,
+  "description": "utils and custom pipes for formly",
+  "scripts": {
+    "build": "ng build ngx-formly --configuration=production",
+    "build:dev": "ng build ngx-formly --configuration=development",
+    "postbuild": "json -I -f dist/package.json -e \"this.files=undefined;this.devDependencies=undefined;this.scripts=undefined;\"",
+    "prepublishOnly": "npm run build",
+    "prerelease": "shx mkdir -p dist && shx cp package.json dist",
+    "prerelease:local": "npm run prerelease",
+    "release": "semantic-release",
+    "release:local": "semantic-release --no-ci",
+    "postrelease": "shx rm -fr dist && shx rm -fr tarball!!",
+    "postrelease:local": "npm run postrelease",
+    "_publish": "cd dist && npm publish --access=public",
+    "pre_publish": "npm run prepublishOnly",
+    "_pack": "npm run prepublishOnly && npm pack --prefix=dist ./dist"
+  },
+  "dependencies": {
+    "@ngx-formly/core": "^6.2.2",
+    "@ngx-formly/material": "^6.2.2",
+    "ngx-quill": "^24.0.4",
+    "quill": "^1.3.7"
+  }
+}

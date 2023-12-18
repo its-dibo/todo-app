@@ -1,0 +1,80 @@
+.mat-card-image {
+  display: block;
+  margin: auto;
+  // by default image is stretched to be full width, we give it it's original width
+  //width: unset;
+  &:first-child {
+    margin-top: 10px;
+  }
+}
+
+mat-card {
+  margin: 15px auto;
+  padding: 10px;
+  border: solid thin #c9c1c1;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  img[mat-card-avatar] {
+    overflow: hidden;
+    // border: solid medium gray;
+    /* a margin with the title group */
+    margin-right: 10px;
+  }
+}
+
+mat-card-img {
+  margin: 16px auto;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  a {
+    color: inherit;
+  }
+}
+
+/* todo: css direction doesn't have the value 'auto' */
+mat-card-title,
+mat-card-subtitle,
+mat-card-content,
+dir-auto {
+  direction: auto;
+}
+
+mat-card-footer {
+  margin-top: 10px;
+}
+
+.info,
+.info-vertical {
+  display: flex;
+}
+
+.info {
+  justify-content: space-between;
+}
+.info-vertical {
+  flex-direction: column;
+}
+
+#time a {
+  // override the font-weight for all <a> set by styles.scss
+  font-weight: inherit;
+}
+
+/* remove text-align:left because it prevent dir="auto" */
+.ql-editor {
+  text-align: inherit !important;
+}
+
+.quick-actions {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+::ng-deep {
+  .ql-editor a {
+    cursor: pointer;
+  }
+}

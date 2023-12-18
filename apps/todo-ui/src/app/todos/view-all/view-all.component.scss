@@ -1,0 +1,13 @@
+::ng-deep {
+  .ql-editor {
+    text-align: start;
+    unicode-bidi: embed;
+  }
+
+  .ql-container {
+    font-family: inherit;
+  }
+  .ql-editor {
+    font-size: large;
+  }
+}

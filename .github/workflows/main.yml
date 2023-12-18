@@ -1,0 +1,44 @@
+name: main-workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        # when a node version fails, remove it from testing and modify package.engines to require a higher version
+        # node-version: [18.x]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: package.json
+      - run: npm -v
+      - run: npm ci -f
+      - run: echo "💡 OS:${{matrix.os}}, Node:${{matrix.node-version}}"
+      - name: testing
+        run: npx cross-env NODE_OPTIONS="--max-old-space-size=8192" npm t
+
+  actions:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci -f
+      - name: delete draft releases from github
+        uses: hugo19941994/delete-draft-releases@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: semantic release
+        run: npm run release -ws --if-preset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: maintenance-tasks
+        run: npm run task maintenance -- --user=${{github.actor}}
+      - run: "git add . && git commit -m 'build: maintenance tasks' && git push origin main"
+      - run: echo "💡 job status:${{ job.status }}."

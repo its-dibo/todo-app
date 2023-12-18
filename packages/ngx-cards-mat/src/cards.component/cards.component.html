@@ -1,0 +1,143 @@
+<mat-spinner
+  *ngIf="!data"
+  strokeWidth="10"
+  diameter="200"
+  style="margin: auto"
+></mat-spinner>
+
+<mat-card
+  *ngIf="data"
+  attr.data-error="{{ !!data.error }}"
+  [ngxAttributes]="attributes"
+>
+  <mat-card-header>
+    <img
+      *ngIf="data.author?.image"
+      mat-card-avatar
+      src="{{ data.author!.image }}"
+      alt="{{ data.author!.name }}"
+    />
+    <mat-card-title-group>
+      <mat-card-title dir="auto" *ngIf="data.title">
+        <!-- todo: add <a> if data.link -->
+        <a routerLink="{{ data.link || '#' }}">
+          <!--todo: opts.titleLength -->
+          <!--todo: dynamic element (html tag) ex: <{{opts.titleTag || 'h1'}}> -->
+          <h1 *ngIf="options.titleTag == 'h1' || !options.titleTag">
+            {{ data.title | length: 200 }}
+          </h1>
+          <h2 *ngIf="options.titleTag == 'h2'">
+            {{ data.title | length: 200 }}
+          </h2>
+          <h3 *ngIf="options.titleTag == 'h3'">
+            {{ data.title | length: 200 }}
+          </h3>
+        </a></mat-card-title
+      >
+
+      <mat-card-subtitle dir="auto">
+        <div [innerHTML]="data.subtitle"></div>
+        <div [ngClass]="data.title ? 'info' : 'info-vertical'">
+          <span *ngIf="data.author" id="author">
+            <a *ngIf="data.author.link" routerLink="{{ data.author.link }}">{{
+              data.author.name
+            }}</a>
+            <span *ngIf="!data.author.link">{{ data.author.name }}</span>
+          </span>
+          <!--todo: a pipe to convert timestamp or Date to string -->
+          @if (!data.title && data.link) {
+            <span id="time"
+              ><a routerLink="{{ data.link }}">{{
+                data.createdAt || data.updatedAt
+              }}</a></span
+            >
+          } @else {
+            <span id="time">{{ data.createdAt || data.updatedAt }}</span>
+          }
+        </div>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+
+    <ng-content select="[header-actions]"></ng-content>
+  </mat-card-header>
+
+  <!--
+        notes:
+        - use attr.width instead of width to remove this attribute if data.cover.width
+        has no value (i.e: null)
+        https://stackoverflow.com/a/62048326/12577650
+    -->
+  <mat-card-content [dir]="options.contentDirection || 'auto'">
+    <!-- todo:
+            - <img  [debug]="opts.dev"
+            [errorImage]="siteLogo or placeholder?text=siteName"
+            [scrollTarget]="$cdk-virtual-scroll-viewport"
+            (onStateChange)="onStateChange($event)" />
+            - if(!data.cover.lazy) remove attribute lazyLoad
+            - ng-lazyload-image hooks
+        -->
+
+    <img
+      *ngIf="data.cover"
+      mat-card-image
+      [attr.width]="data.cover.width"
+      [attr.height]="data.cover.height"
+      [src]="data.cover.src"
+      [data-src]="data.cover.src"
+      [data-srcset]="data.cover.srcset"
+      [sizes]="data.cover.sizes"
+      [alt]="data.cover.alt || data.title || ''"
+    />
+
+    <!--
+            in item mode, use <quill-view> to render the content that was generated via <quill-editor>
+            https://www.npmjs.com/package/ngx-quill#quillviewcomponent---using-quilljs-to-render-content
+            todo:
+            if(quillView)use <quill-view>
+            else use <div *ngIf="type=='list'" class="content" [innerHtml]="data.content"></div>
+        -->
+
+    <ng-content select="[before-content]"></ng-content>
+
+    <quill-view-html
+      *ngIf="data.content"
+      #quillView
+      [content]="data.content | hypernate: { target: '_blank' }"
+      theme="snow"
+    ></quill-view-html>
+
+    <ng-content select="[after-content]"></ng-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-content select="[actions]"></ng-content>
+  </mat-card-actions>
+
+  <mat-card-footer>
+    <ng-content select="[footer]"></ng-content>
+
+    <mat-chip-set aria-label="keywords" *ngIf="data.keywords">
+      <mat-chip
+        *ngFor="let item of data.keywords"
+        matBadge="{{ item.count }}"
+        matBadgeOverlap="true"
+      >
+        <a
+          *ngIf="item.link"
+          routerLink="{{ item.link }}"
+          target="{{ item.target }}"
+          >{{ item.text }}</a
+        >
+        <span *ngIf="!item.link">{{ item.text }}</span>
+      </mat-chip>
+    </mat-chip-set>
+  </mat-card-footer>
+</mat-card>
+
+<!-- <mat-card-actions>
+    <button mat-flat-button color="primary">
+    <mat-icon>like</mat-icon> Like
+    </button>
+    <button mat-flat-button color="accent">
+    <mat-icon>share</mat-icon> SHARE
+    </button>
+    </mat-card-actions> -->

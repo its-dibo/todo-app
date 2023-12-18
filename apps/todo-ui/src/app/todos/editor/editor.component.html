@@ -1,0 +1,12 @@
+<h1>Create a new post</h1>
+<app-board [message]="message"></app-board>
+<app-form
+  [fields]="fields"
+  (submit)="onSubmit($event)"
+  [model]="model"
+></app-form>
+<mat-spinner
+  *ngIf="loading || !fields"
+  strokeWidth="10"
+  diameter="100"
+></mat-spinner>

@@ -1,0 +1,16 @@
+<h3 *ngIf="count > 0">{{ count }} {{ count === 1 ? "Note" : "Notes" }}</h3>
+
+<app-board [message]="message"></app-board>
+
+<div *ngIf="data" class="masonry">
+  @for (item of data; track item.id) {
+    <ngx-content-card [data]="item">
+      <ng-container after-content
+        ><a [routerLink]="item.link">view details..</a>
+      </ng-container>
+    </ngx-content-card>
+  } @empty {
+    No Posts!
+  }
+</div>
+<mat-spinner *ngIf="loading" strokeWidth="10" diameter="100"></mat-spinner>
